@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>مساحتك أمان — تسجيل الدخول</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;font-family:Tajawal,Tahoma,Arial,sans-serif}
+body{overflow:hidden;background:#07101f;color:#fff}
+:root{--cyan:#65e6df;--blue:#7b8cff;--pink:#ff8db4;--gold:#ffc95e}
+.scene{position:relative;width:100%;height:100%;overflow:hidden;background:
+radial-gradient(circle at 70% 25%,#263e71 0,#111d39 28%,#07101f 72%)}
+.sky{position:absolute;inset:0;background:
+radial-gradient(circle at 12% 18%,#fff 0 1px,transparent 2px),
+radial-gradient(circle at 32% 12%,#7fefff 0 1px,transparent 2px),
+radial-gradient(circle at 78% 16%,#fff 0 1px,transparent 2px),
+radial-gradient(circle at 90% 38%,#fff 0 1px,transparent 2px),
+radial-gradient(circle at 62% 8%,#b5a8ff 0 1px,transparent 2px);
+opacity:.55}
+.moon{position:absolute;width:130px;height:130px;border-radius:50%;right:8%;top:9%;background:#eafcff;box-shadow:0 0 70px #9ceeff77}
+.moon:after{content:"";position:absolute;width:130px;height:130px;border-radius:50%;right:-28px;top:-15px;background:#142442}
+.ground{position:absolute;left:0;right:0;bottom:0;height:29%;background:linear-gradient(#101a2e,#070b14);border-top:1px solid #ffffff16}
+.ground:before{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 49.7%,#ffffff09 50%,transparent 50.3%);background-size:90px 100%;opacity:.7}
+.brand{position:absolute;top:30px;right:7%;z-index:50}.brand b{font-size:28px}.brand span{display:block;color:#9eb1d7;font-size:13px;margin-top:3px}
+.replay{position:absolute;top:28px;left:5%;z-index:70;border:1px solid #ffffff20;background:#ffffff0d;color:#fff;border-radius:14px;padding:11px 16px;cursor:pointer}
+.stage{position:absolute;inset:0;z-index:10}
+.character{position:absolute;left:-310px;bottom:14%;width:300px;height:520px;z-index:20;filter:drop-shadow(0 20px 30px #0008)}
+.character.walk{animation:enter 5.2s cubic-bezier(.18,.72,.2,1) forwards}
+@keyframes enter{0%{left:-330px}72%{left:45%}100%{left:45%}}
+.shadow{position:absolute;bottom:0;left:70px;width:170px;height:28px;border-radius:50%;background:#0008;filter:blur(7px)}
+.svgchar{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.bodygrp{transform-origin:150px 300px}
+.character.walk .bodygrp{animation:bob .5s ease-in-out 7}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+.legL,.legR{transform-box:fill-box;transform-origin:50% 10%}
+.character.walk .legL{animation:leg1 .5s ease-in-out 7}.character.walk .legR{animation:leg2 .5s ease-in-out 7}
+@keyframes leg1{0%,100%{transform:rotate(13deg)}50%{transform:rotate(-13deg)}}@keyframes leg2{0%,100%{transform:rotate(-13deg)}50%{transform:rotate(13deg)}}
+.armL,.armR{transform-box:fill-box;transform-origin:50% 8%}
+.character.walk .armL{animation:arm1 .5s ease-in-out 7}.character.walk .armR{animation:arm2 .5s ease-in-out 7}
+@keyframes arm1{0%,100%{transform:rotate(-13deg)}50%{transform:rotate(18deg)}}@keyframes arm2{0%,100%{transform:rotate(18deg)}50%{transform:rotate(-13deg)}}
+.bag{transform-origin:150px 370px}.character.walk .bag{animation:bagwalk .5s ease-in-out 7}
+@keyframes bagwalk{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(5deg)}}
+.dropped .bag{animation:bagdrop .65s ease forwards}
+@keyframes bagdrop{0%{transform:translate(0,0) rotate(5deg)}100%{transform:translate(-5px,55px) rotate(-7deg)}}
+.bag-lid{transform-box:fill-box;transform-origin:bottom center}
+.dropped .bag-lid{animation:openlid .8s .45s ease forwards}
+@keyframes openlid{to{transform:rotateX(72deg) translateY(-8px)}}
+.particles{position:absolute;left:50%;top:56%;width:240px;height:180px;z-index:25;pointer-events:none}
+.particle{position:absolute;opacity:0}.dropped+.particles .particle{animation:floatup 1s ease forwards}
+.particle.one{left:25%;top:35%;font-size:22px}.particle.two{left:60%;top:40%;font-size:19px}.particle.three{left:45%;top:20%;font-size:17px}.particle.four{left:75%;top:60%;font-size:20px}
+@keyframes floatup{0%{opacity:0;transform:translateY(30px) scale(.4)}25%{opacity:1}100%{opacity:0;transform:translateY(-90px) scale(1.1)}}
+.card-fly{position:absolute;z-index:35;opacity:0;transform:scale(.4);pointer-events:none}
+.dropped~.cards .card-fly{animation:cardfly 1s 1.05s cubic-bezier(.2,.8,.2,1) forwards}
+.mail{left:43%;top:55%}.pass{left:55%;top:54%}.cta{left:49%;top:51%}
+@keyframes cardfly{0%{opacity:0;transform:translateY(35px) scale(.35) rotate(0)}35%{opacity:1}100%{opacity:1;transform:translateY(-150px) scale(1) rotate(var(--rot))}}
+.card-inner{padding:12px 17px;border-radius:14px;background:#f8fbff;color:#0d1830;box-shadow:0 15px 35px #0008;font-weight:800;white-space:nowrap}
+.cta .card-inner{background:linear-gradient(100deg,var(--cyan),var(--blue));color:#07101b}
+.login{position:absolute;left:7%;top:50%;transform:translateY(-50%) translateX(-35px);width:370px;padding:30px;border-radius:28px;background:#0e172ad9;border:1px solid #ffffff1e;backdrop-filter:blur(20px);box-shadow:0 30px 100px #0009;opacity:0;z-index:60;transition:.8s}
+.login.show{opacity:1;transform:translateY(-50%) translateX(0)}
+.login h2{font-size:29px;margin:0 0 7px}.login p{color:#9fb0d2;margin:0 0 23px}.field{margin:13px 0}.field label{display:block;font-size:13px;color:#aab9d7;margin-bottom:7px}.field input{width:100%;padding:14px 15px;border-radius:14px;border:1px solid #ffffff1b;background:#070d19;color:#fff;font-size:15px;outline:none}.field input:focus{border-color:var(--cyan);box-shadow:0 0 0 4px #65e6df18}.login button{width:100%;border:0;border-radius:14px;padding:14px;background:linear-gradient(100deg,var(--cyan),var(--blue));font-size:16px;font-weight:900;cursor:pointer;color:#07101c}.hint{margin-top:15px;text-align:center;font-size:12px;color:#8090b2}
+.point{position:absolute;right:43%;bottom:32%;z-index:31;opacity:0;transform:translateX(20px)}
+.point.show{animation:point 1.2s .1s forwards}
+@keyframes point{0%{opacity:0;transform:translateX(20px)}30%{opacity:1}100%{opacity:1;transform:translateX(0)}}
+.bubble{position:absolute;left:42%;bottom:43%;z-index:40;background:#fff;color:#12182a;border-radius:20px 20px 4px 20px;padding:13px 18px;font-weight:800;opacity:0;transform:scale(.75);transition:.5s;box-shadow:0 15px 35px #0007}.bubble.show{opacity:1;transform:scale(1)}
+.footer-note{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);color:#7f91b6;font-size:12px;z-index:50}
+@media(max-width:900px){.character{transform:scale(.78);transform-origin:bottom center}.login{left:50%;top:53%;width:min(360px,90vw);transform:translate(-50%,-50%) translateY(35px)}.login.show{transform:translate(-50%,-50%)}.brand{right:5%;top:22px}.brand b{font-size:22px}.moon{width:90px;height:90px}.bubble{left:8%;bottom:44%}}
+</style>
+</head>
+<body>
+<div class="scene">
+<div class="sky"></div><div class="moon"></div><div class="ground"></div>
+<div class="brand"><b>مساحتك أمان</b><span>تجربة دخول مختلفة ✦</span></div>
+<button class="replay" id="replay">↻ إعادة المشهد</button>
+<div class="stage">
+
+<div class="character walk" id="character">
+<div class="shadow"></div>
+<svg class="svgchar" viewBox="0 0 300 520" aria-label="شخصية كرتونية">
+<g class="bodygrp">
+<!-- hair behind head -->
+<path d="M103 91 Q108 39 151 38 Q205 38 207 93 Q194 71 175 66 Q151 81 119 69Z" fill="#38202f"/>
+<!-- head -->
+<ellipse cx="151" cy="100" rx="52" ry="62" fill="#ffd0b0" stroke="#7e4c43" stroke-width="4"/>
+<!-- hair -->
+<path d="M101 94 Q99 42 151 34 Q207 36 208 93 Q195 72 174 62 Q150 80 119 68 Q112 82 101 94Z" fill="#4a2634"/>
+<circle cx="118" cy="105" r="5" fill="#22283b"/><circle cx="179" cy="105" r="5" fill="#22283b"/>
+<path d="M135 131 Q151 141 168 130" fill="none" stroke="#9a4f58" stroke-width="4" stroke-linecap="round"/>
+<circle cx="106" cy="122" r="9" fill="#ff9a9a" opacity=".35"/><circle cx="193" cy="122" r="9" fill="#ff9a9a" opacity=".35"/>
+<!-- neck -->
+<path d="M136 151 L136 174 L168 174 L168 151" fill="#f0ae8d"/>
+<!-- torso -->
+<path d="M104 166 Q151 143 198 166 L215 292 Q151 315 87 292Z" fill="#5fe0d1" stroke="#284f87" stroke-width="5"/>
+<path d="M120 172 Q151 196 182 172" fill="none" stroke="#b7fff6" stroke-width="5" opacity=".7"/>
+<!-- legs -->
+<g class="legL"><path d="M105 285 L139 287 L130 419 Q126 439 107 437 L91 431Z" fill="#303d67" stroke="#1b2645" stroke-width="5"/><path d="M82 424 Q112 416 139 431 Q139 449 118 454 L76 449 Q66 441 82 424Z" fill="#eef8ff" stroke="#53617d" stroke-width="4"/></g>
+<g class="legR"><path d="M159 287 L193 283 L208 420 Q207 439 187 441 L169 434Z" fill="#303d67" stroke="#1b2645" stroke-width="5"/><path d="M174 425 Q202 417 225 433 Q227 449 205 454 L165 448 Q158 439 174 425Z" fill="#eef8ff" stroke="#53617d" stroke-width="4"/></g>
+<!-- arms -->
+<g class="armL"><path d="M105 176 Q74 204 71 267" fill="none" stroke="#ffd0b0" stroke-width="26" stroke-linecap="round"/><circle cx="70" cy="274" r="17" fill="#ffd0b0" stroke="#7e4c43" stroke-width="4"/></g>
+<g class="armR"><path d="M197 177 Q225 211 224 264" fill="none" stroke="#ffd0b0" stroke-width="26" stroke-linecap="round"/><circle cx="224" cy="271" r="17" fill="#ffd0b0" stroke="#7e4c43" stroke-width="4"/></g>
+<!-- bag -->
+<g class="bag">
+<path d="M73 274 Q95 254 121 274 L125 350 Q96 368 67 349Z" fill="#e7a73d" stroke="#6b3e1c" stroke-width="5"/>
+<path d="M80 274 Q92 239 111 274" fill="none" stroke="#f0c15b" stroke-width="9" stroke-linecap="round"/>
+<path class="bag-lid" d="M72 278 Q97 253 123 278 L119 303 Q96 287 74 304Z" fill="#f2b84b" stroke="#6b3e1c" stroke-width="5"/>
+<circle cx="96" cy="310" r="8" fill="#ffe08a" stroke="#80531d" stroke-width="3"/>
+</g>
+</g>
+</svg>
+</div>
+
+<div class="particles"><span class="particle one">✦</span><span class="particle two">✧</span><span class="particle three">✦</span><span class="particle four">•</span></div>
+<div class="cards">
+<div class="card-fly mail" style="--rot:-7deg"><div class="card-inner">✉ الجيميل</div></div>
+<div class="card-fly pass" style="--rot:7deg"><div class="card-inner">🔐 كلمة السر</div></div>
+<div class="card-fly cta" style="--rot:-3deg"><div class="card-inner">✦ تسجيل الدخول</div></div>
+</div>
+<div class="bubble" id="bubble">اتفضل... البيانات قدامك 👋</div>
+<div class="point" id="point">👈</div>
+
+<form class="login" id="login">
+<h2>أهلاً بيك ✨</h2><p>الحقيبة جابتلك كل حاجة... فاضل تدخل بس.</p>
+<div class="field"><label>الجيميل</label><input type="email" placeholder="name@example.com" required></div>
+<div class="field"><label>كلمة السر</label><input type="password" placeholder="••••••••" required></div>
+<button>دخول إلى مساحتك</button><div class="hint">تجربة واجهة فقط — لا يتم إرسال البيانات لأي خادم</div>
+</form>
+</div>
+<div class="footer-note">صُممت كواجهة كرتونية تفاعلية ✦</div>
+</div>
+<script>
+const ch=document.getElementById('character'),bag=document.querySelector('.bag'),login=document.getElementById('login'),bubble=document.getElementById('bubble'),point=document.getElementById('point'),status={};
+let timers=[];
+function play(){
+timers.forEach(clearTimeout);timers=[];
+ch.classList.remove('dropped');login.classList.remove('show');bubble.classList.remove('show');point.classList.remove('show');
+void ch.offsetWidth;ch.classList.add('walk');
+timers.push(setTimeout(()=>ch.classList.add('dropped'),3900));
+timers.push(setTimeout(()=>bubble.classList.add('show'),5050));
+timers.push(setTimeout(()=>point.classList.add('show'),5200));
+timers.push(setTimeout(()=>login.classList.add('show'),6200));
+}
+document.getElementById('replay').onclick=play;
+document.getElementById('login').onsubmit=e=>{e.preventDefault();bubble.textContent='تمام! نورت مساحتك 💙';bubble.classList.add('show')};
+play();
+</script>
+</body>
+</html>
